@@ -1,0 +1,105 @@
+/* Testimonial Infinite Slider - High Performance & SEO Optimized */
+
+.testimonial-slider {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+}
+
+.testimonial-track {
+    display: flex;
+    animation: slideInfinite 30s linear infinite;
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+.testimonial-slide {
+    flex: 0 0 auto;
+    width: 400px;
+    margin-right: 2rem;
+    backface-visibility: hidden; /* Performance optimization */
+}
+
+@keyframes slideInfinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause on hover for better UX */
+.testimonial-track:hover {
+    animation-play-state: paused;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .testimonial-slide {
+        width: 350px;
+        margin-right: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial-slide {
+        width: 300px;
+        margin-right: 1rem;
+    }
+
+    .testimonial-track {
+        animation-duration: 25s;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-slide {
+        width: 280px;
+        margin-right: 0.75rem;
+    }
+
+    .testimonial-track {
+        animation-duration: 20s;
+    }
+}
+
+/* Performance optimizations */
+.testimonial-slider * {
+    transform: translateZ(0);
+}
+
+/* Accessibility - respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .testimonial-track {
+        animation: none;
+    }
+
+    .testimonial-slider {
+        overflow-x: auto;
+        scroll-behavior: smooth;
+    }
+}
+
+/* SEO optimization - ensure content remains accessible */
+.testimonial-slide {
+    scroll-snap-align: start;
+}
+
+.testimonial-slider {
+    scroll-snap-type: x mandatory;
+}
