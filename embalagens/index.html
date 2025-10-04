@@ -37,6 +37,9 @@
         .bg-cyan-gradient {
             background: linear-gradient(to right, #00ffff, #0080ff);
         }
+        .bg-blue-custom {
+            background-color: #0080ff;
+        }
     </style>
     <meta property="og:title" content="Embalagens Personalizadas em São Paulo - Gráfica Especialista" />
 <meta property="og:description" content="Produzimos embalagens sob medida para varejo, moda, cosméticos, farmacêutico e têxtil." />
@@ -48,10 +51,11 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
+            <div class="flex justify-center h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <span class="text-2xl font-bold gradient-text">Gráfica Izeppi</span>
                 </div>
+                <!--
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-center space-x-8">
                         <a href="#" class="text-gray-700 hover:text-indigo-600 px-3 py-2 font-medium">Home</a>
@@ -69,6 +73,7 @@
                         <i data-feather="menu"></i>
                     </button>
                 </div>
+                -->
             </div>
         </div>
     </nav>
@@ -124,10 +129,10 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">45 anos de tradição</h3>
                     <p class="text-gray-600 mb-4">
-                        High-quality digital printing with vibrant colors and sharp details for all your marketing materials.
+                        
                     </p>
                     <a href="#" class="text-indigo-600 font-medium flex items-center">
-                        Learn more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        Saiba mais <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                     </a>
                 </div>
 
@@ -141,7 +146,7 @@
                         Innovative packaging solutions that protect your product while telling your brand story.
                     </p>
                     <a href="#" class="text-purple-600 font-medium flex items-center">
-                        Learn more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        Saiba mais <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                     </a>
                 </div>
 
@@ -470,7 +475,7 @@
 
     <!-- FAQ Section -->
     <div class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-16">
                 <span class="text-indigo-600 font-semibold">PERGUNTAS FREQUENTES</span>
@@ -481,14 +486,21 @@
             </div>
 
             <!-- FAQ Items -->
-            <div class="space-y-4">
+            <div class="space-y-4 w-full max-w-full">
                 <!-- FAQ 1 - Tipos de embalagens -->
-                <details id="faq-tipos-embalagens" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-tipos-embalagens" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Que tipos de embalagens personalizadas vocês produzem?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Que tipos de embalagens personalizadas vocês produzem?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <defs>
+                                    <linearGradient id="faq-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#800;stop-opacity:1" />
+                                        <stop offset="70%" style="stop-color:#FF6B6B;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -503,12 +515,12 @@
                 </details>
 
                 <!-- FAQ 2 - Orçamento e preços -->
-                <details id="faq-orcamento-precos" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-orcamento-precos" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Como funciona o processo de orçamento e quanto tempo demora?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Como funciona o processo de orçamento e quanto tempo demora?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -523,12 +535,12 @@
                 </details>
 
                 <!-- FAQ 3 - Prazos de entrega -->
-                <details id="faq-prazos-entrega" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-prazos-entrega" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Quais são os prazos de produção e entrega?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Quais são os prazos de produção e entrega?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -543,12 +555,12 @@
                 </details>
 
                 <!-- FAQ 4 - Quantidade mínima -->
-                <details id="faq-quantidade-minima" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-quantidade-minima" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Qual é a quantidade mínima para produção?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Qual é a quantidade mínima para produção?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -563,12 +575,12 @@
                 </details>
 
                 <!-- FAQ 5 - Design e arquivos -->
-                <details id="faq-design-arquivos" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-design-arquivos" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Vocês criam o design ou preciso enviar arte pronta?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Vocês criam o design ou preciso enviar arte pronta?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -583,12 +595,12 @@
                 </details>
 
                 <!-- FAQ 6 - Materiais sustentáveis -->
-                <details id="faq-materiais-sustentaveis" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-materiais-sustentaveis" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">As embalagens são sustentáveis e têm certificação FSC?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">As embalagens são sustentáveis e têm certificação FSC?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -603,12 +615,12 @@
                 </details>
 
                 <!-- FAQ 7 - Cobertura geográfica -->
-                <details id="faq-cobertura-geografica" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-cobertura-geografica" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Atendem clientes fora de São Paulo? Como funciona a entrega?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Atendem clientes fora de São Paulo? Como funciona a entrega?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -623,12 +635,12 @@
                 </details>
 
                 <!-- FAQ 8 - Pagamento -->
-                <details id="faq-pagamento-processo" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-pagamento-processo" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Como funciona o pagamento e processo de pedido?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Como funciona o pagamento e processo de pedido?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -643,12 +655,12 @@
                 </details>
 
                 <!-- FAQ 9 - Experiência e especialidades -->
-                <details id="faq-experiencia-especialidades" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-experiencia-especialidades" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Por que escolher a Gráfica Izeppi para embalagens personalizadas?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Por que escolher a Gráfica Izeppi para embalagens personalizadas?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -663,12 +675,12 @@
                 </details>
 
                 <!-- FAQ 10 - Acabamentos especiais -->
-                <details id="faq-acabamentos-especiais" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300">
+                <details id="faq-acabamentos-especiais" class="group border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-indigo-300 w-full max-w-full">
                     <summary class="flex justify-between items-center p-6 cursor-pointer bg-gray-50 hover:bg-indigo-50 transition-colors duration-300">
-                        <h3 class="text-lg font-semibold text-gray-800 pr-8">Que acabamentos especiais estão disponíveis?</h3>
-                        <div class="flex-shrink-0 w-6 h-6 text-indigo-600 transform transition-transform duration-300 group-open:rotate-180">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <h3 class="text-lg font-semibold text-gray-800 flex-1 pr-4">Que acabamentos especiais estão disponíveis?</h3>
+                        <div class="flex-shrink-0 w-4 h-4 transform transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-full h-full" fill="none" stroke="url(#faq-gradient)" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                     </summary>
@@ -803,7 +815,7 @@
     </script>
 
     <!-- CTA Section -->
-    <div class="py-24 bg-indigo-600 text-white">
+    <div class="py-24 bg-blue-custom text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
@@ -828,6 +840,105 @@
             </div>
         </div>
     </div>
+
+    <!-- Simplified Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+          <!-- Left Column - Headline & Subheadline -->
+          <div data-aos="fade-right">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+              Solicite um
+              <span class="gradient-text">Orçamento</span>
+              Personalizado
+            </h2>
+
+            <p class="text-xl text-gray-600 leading-relaxed">
+              Há mais de 45 anos criamos embalagens que elevam marcas do varejo de moda, cosméticos e e-commerce.
+              Entre em contato e descubra como podemos transformar sua visão em realidade.
+            </p>
+          </div>
+
+          <!-- Right Column - Simple Contact Form -->
+          <div data-aos="fade-left" class="bg-gray-50 rounded-2xl p-8">
+            <form class="space-y-6">
+              <!-- Name Field -->
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                  Nome *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                  placeholder="Seu nome completo"
+                >
+              </div>
+
+              <!-- Email Field -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                  E-mail *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                  placeholder="seu.email@empresa.com"
+                >
+              </div>
+
+              <!-- Phone Field -->
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                  Telefone *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                  placeholder="(11) 99999-9999"
+                >
+              </div>
+
+              <!-- Message Field -->
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                  Mensagem
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 resize-vertical"
+                  placeholder="Conte-nos sobre seu projeto de embalagem..."
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                style="background: linear-gradient(90deg, #800 0%, #FF6B6B 70%, #FF6B6B 100%);"
+                class="w-full hover:shadow-lg text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02]"
+              >
+                Solicitar Orçamento Gratuito
+              </button>
+
+              <p class="text-sm text-gray-500 text-center">
+                Resposta em até 24 horas úteis
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-16">
