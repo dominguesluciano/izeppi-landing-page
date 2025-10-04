@@ -4,78 +4,136 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 10%,
-        black 90%,
-        transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 10%,
-        black 90%,
-        transparent 100%
-    );
 }
 
-.testimonial-track {
-    display: flex;
-    animation: slideInfinite 30s linear infinite;
-    will-change: transform;
-    transform: translateZ(0); /* Hardware acceleration */
-}
-
-.testimonial-slide {
-    flex: 0 0 auto;
-    width: 400px;
-    margin-right: 2rem;
-    backface-visibility: hidden; /* Performance optimization */
-}
-
-@keyframes slideInfinite {
-    0% {
-        transform: translateX(0);
+/* Desktop: Continuous sliding with fade mask */
+@media (min-width: 769px) {
+    .testimonial-slider {
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
     }
-    100% {
-        transform: translateX(-50%);
+
+    .testimonial-track {
+        display: flex;
+        animation: slideInfinite 30s linear infinite;
+        will-change: transform;
+        transform: translateZ(0); /* Hardware acceleration */
+    }
+
+    .testimonial-slide {
+        flex: 0 0 auto;
+        width: 400px;
+        margin-right: 2rem;
+        backface-visibility: hidden; /* Performance optimization */
+    }
+
+    @keyframes slideInfinite {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
     }
 }
 
-/* Pause on hover for better UX */
-.testimonial-track:hover {
-    animation-play-state: paused;
+/* Mobile: Centered card display with step transitions */
+@media (max-width: 768px) {
+    .testimonial-slider {
+        display: flex;
+        justify-content: center;
+        padding: 0 1rem;
+    }
+
+    .testimonial-track {
+        display: flex;
+        animation: slideStepMobile 16s infinite; /* 4 cards × 4s each */
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+    .testimonial-slide {
+        flex: 0 0 auto;
+        width: calc(100vw - 2rem);
+        max-width: 350px;
+        margin-right: 1rem;
+        backface-visibility: hidden;
+    }
+
+    /* Step-by-step animation for mobile - 4 seconds per card */
+    @keyframes slideStepMobile {
+        0%, 23% {
+            transform: translateX(0);
+        }
+        25%, 48% {
+            transform: translateX(calc(-100vw - 1rem));
+        }
+        50%, 73% {
+            transform: translateX(calc(-200vw - 2rem));
+        }
+        75%, 98% {
+            transform: translateX(calc(-300vw - 3rem));
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
 }
 
-/* Responsive design */
-@media (max-width: 1024px) {
+/* Smaller mobile screens */
+@media (max-width: 480px) {
+    .testimonial-slider {
+        padding: 0 0.5rem;
+    }
+
+    .testimonial-slide {
+        width: calc(100vw - 1rem);
+        max-width: 300px;
+        margin-right: 0.5rem;
+    }
+
+    @keyframes slideStepMobile {
+        0%, 23% {
+            transform: translateX(0);
+        }
+        25%, 48% {
+            transform: translateX(calc(-100vw - 0.5rem));
+        }
+        50%, 73% {
+            transform: translateX(calc(-200vw - 1rem));
+        }
+        75%, 98% {
+            transform: translateX(calc(-300vw - 1.5rem));
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Tablet responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
     .testimonial-slide {
         width: 350px;
         margin-right: 1.5rem;
     }
 }
 
-@media (max-width: 768px) {
-    .testimonial-slide {
-        width: 300px;
-        margin-right: 1rem;
-    }
-
-    .testimonial-track {
-        animation-duration: 25s;
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonial-slide {
-        width: 280px;
-        margin-right: 0.75rem;
-    }
-
-    .testimonial-track {
-        animation-duration: 20s;
-    }
+/* Pause on hover for better UX */
+.testimonial-track:hover {
+    animation-play-state: paused;
 }
 
 /* Performance optimizations */

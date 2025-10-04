@@ -70,11 +70,30 @@ class TestimonialSlider {
         const track = this.container.querySelector('.testimonial-track');
         if (!track) return;
 
-        // Pause animation on hover/focus for better UX
-        track.addEventListener('mouseenter', this.pauseAnimation.bind(this));
-        track.addEventListener('mouseleave', this.resumeAnimation.bind(this));
-        track.addEventListener('focusin', this.pauseAnimation.bind(this));
-        track.addEventListener('focusout', this.resumeAnimation.bind(this));
+        // Only pause on hover for desktop (tablet and up)
+        const mediaQuery = window.matchMedia('(min-width: 769px)');
+
+        const handleHoverEvents = (e) => {
+            if (e.matches) {
+                // Desktop: enable hover pause
+                track.addEventListener('mouseenter', this.pauseAnimation.bind(this));
+                track.addEventListener('mouseleave', this.resumeAnimation.bind(this));
+                track.addEventListener('focusin', this.pauseAnimation.bind(this));
+                track.addEventListener('focusout', this.resumeAnimation.bind(this));
+            } else {
+                // Mobile: remove hover events to prevent issues
+                track.removeEventListener('mouseenter', this.pauseAnimation.bind(this));
+                track.removeEventListener('mouseleave', this.resumeAnimation.bind(this));
+                track.removeEventListener('focusin', this.pauseAnimation.bind(this));
+                track.removeEventListener('focusout', this.resumeAnimation.bind(this));
+            }
+        };
+
+        // Initial setup
+        handleHoverEvents(mediaQuery);
+
+        // Listen for screen size changes
+        mediaQuery.addEventListener('change', handleHoverEvents);
     }
 
     pauseAnimation() {
