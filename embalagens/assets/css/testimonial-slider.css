@@ -49,12 +49,13 @@
     }
 }
 
-/* Mobile: Centered card display with step transitions */
+/* Mobile: Full-width centered card display with step transitions */
 @media (max-width: 768px) {
     .testimonial-slider {
-        display: flex;
-        justify-content: center;
-        padding: 0 1rem;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%); /* Break out of container */
+        padding: 0;
+        overflow: hidden;
     }
 
     .testimonial-track {
@@ -65,26 +66,27 @@
     }
 
     .testimonial-slide {
-        flex: 0 0 auto;
-        width: calc(100vw - 2rem);
-        max-width: 350px;
-        margin-right: 1rem;
+        flex: 0 0 100vw; /* Each card takes exactly 100vw */
+        width: 100vw;
+        padding: 0 4vw; /* More generous padding for better visual spacing */
+        margin: 0; /* No margins - precise alignment */
         backface-visibility: hidden;
+        box-sizing: border-box;
     }
 
-    /* Step-by-step animation for mobile - 4 seconds per card */
+    /* Precise step-by-step animation - each step moves exactly 100vw */
     @keyframes slideStepMobile {
         0%, 23% {
             transform: translateX(0);
         }
         25%, 48% {
-            transform: translateX(calc(-100vw - 1rem));
+            transform: translateX(-100vw);
         }
         50%, 73% {
-            transform: translateX(calc(-200vw - 2rem));
+            transform: translateX(-200vw);
         }
         75%, 98% {
-            transform: translateX(calc(-300vw - 3rem));
+            transform: translateX(-300vw);
         }
         100% {
             transform: translateX(0);
@@ -92,34 +94,10 @@
     }
 }
 
-/* Smaller mobile screens */
+/* Smaller mobile screens - same precise approach */
 @media (max-width: 480px) {
-    .testimonial-slider {
-        padding: 0 0.5rem;
-    }
-
     .testimonial-slide {
-        width: calc(100vw - 1rem);
-        max-width: 300px;
-        margin-right: 0.5rem;
-    }
-
-    @keyframes slideStepMobile {
-        0%, 23% {
-            transform: translateX(0);
-        }
-        25%, 48% {
-            transform: translateX(calc(-100vw - 0.5rem));
-        }
-        50%, 73% {
-            transform: translateX(calc(-200vw - 1rem));
-        }
-        75%, 98% {
-            transform: translateX(calc(-300vw - 1.5rem));
-        }
-        100% {
-            transform: translateX(0);
-        }
+        padding: 0 6vw; /* Even more padding for smaller screens for better readability */
     }
 }
 
