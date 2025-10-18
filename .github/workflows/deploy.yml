@@ -21,11 +21,15 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y lftp
 
       - name: Deploy embalagens folder to IONOS via SFTP
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USERNAME }}
+          SFTP_PASS: ${{ secrets.SFTP_PASSWORD }}
         run: |
           lftp -c "
           set sftp:auto-confirm yes;
           set ssl:verify-certificate no;
-          open -u ${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }} sftp://${{ secrets.SFTP_HOST }};
+          open -u $SFTP_USER,$SFTP_PASS sftp://$SFTP_HOST;
           mirror --reverse --verbose --exclude .git --exclude .DS_Store --exclude node_modules ./embalagens /grafica/embalagens;
           bye;
           "
