@@ -17,8 +17,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass rsync
 
       - name: Deploy embalagens folder to IONOS via SFTP
         env:
@@ -26,10 +26,9 @@ jobs:
           SFTP_USER: ${{ secrets.SFTP_USERNAME }}
           SFTP_PASS: ${{ secrets.SFTP_PASSWORD }}
         run: |
-          lftp -c "
-          set sftp:auto-confirm yes;
-          set ssl:verify-certificate no;
-          open -u $SFTP_USER,$SFTP_PASS sftp://$SFTP_HOST;
-          mirror --reverse --verbose --exclude .git --exclude .DS_Store --exclude node_modules ./embalagens /grafica/embalagens;
-          bye;
-          "
+          sshpass -p "$SFTP_PASS" rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.DS_Store' \
+            --exclude='node_modules' \
+            -e "ssh -o StrictHostKeyChecking=no -p 22" \
+            ./embalagens/ $SFTP_USER@$SFTP_HOST:/grafica/embalagens/
