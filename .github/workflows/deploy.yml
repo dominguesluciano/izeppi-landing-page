@@ -1,0 +1,35 @@
+name: Deploy Embalagens to IONOS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'embalagens/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to IONOS via SFTP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy embalagens folder to IONOS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./embalagens/
+          server-dir: /grafica/embalagens/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
+            **/README.md
