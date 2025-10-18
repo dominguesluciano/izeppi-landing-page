@@ -18,18 +18,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy embalagens folder to IONOS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          protocol: sftp
-          local-dir: ./embalagens/
-          server-dir: /grafica/embalagens/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
-            **/node_modules/**
-            **/README.md
+          port: 22
+          local_path: ./embalagens/*
+          remote_path: /grafica/embalagens/
+          sftp_only: true
