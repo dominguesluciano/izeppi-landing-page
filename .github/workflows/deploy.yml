@@ -26,4 +26,5 @@ jobs:
           SFTP_USER: ${{ secrets.SFTP_USERNAME }}
           SFTP_PASS: ${{ secrets.SFTP_PASSWORD }}
         run: |
-          lftp -e "set sftp:auto-confirm yes; set net:timeout 10; set net:max-retries 3; mirror --reverse --delete --verbose --exclude .git --exclude .DS_Store --exclude node_modules ./embalagens /grafica/embalagens; bye" -u "$SFTP_USER,$SFTP_PASS" sftp://"$SFTP_HOST"
+          cd embalagens
+          lftp -e "set sftp:auto-confirm yes; set net:timeout 10; set net:max-retries 3; mirror --reverse --delete --verbose --exclude .git --exclude .DS_Store --exclude node_modules ./ /grafica/embalagens; bye" -u "$SFTP_USER,$SFTP_PASS" sftp://"$SFTP_HOST"

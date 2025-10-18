@@ -1,0 +1,8 @@
+# Disable WordPress redirects for this directory
+# This allows the static HTML files to be served directly
+
+# Turn off the rewrite engine for this directory
+RewriteEngine Off
+
+# Set DirectoryIndex to look for index.html first
+DirectoryIndex index.html index.php
