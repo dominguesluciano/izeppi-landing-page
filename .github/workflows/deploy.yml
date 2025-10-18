@@ -17,13 +17,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy embalagens folder to IONOS
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
-          local_path: ./embalagens/*
-          remote_path: /grafica/embalagens/
-          sftp_only: true
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy embalagens folder to IONOS via SFTP
+        run: |
+          lftp -c "
+          set sftp:auto-confirm yes;
+          set ssl:verify-certificate no;
+          open -u ${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }} sftp://${{ secrets.SFTP_HOST }};
+          mirror --reverse --verbose --exclude .git --exclude .DS_Store --exclude node_modules ./embalagens /grafica/embalagens;
+          bye;
+          "
