@@ -917,16 +917,6 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     }
   };
 
-  // IMMEDIATE GTM tracking - BEFORE API call
-  console.log('🔥 FORM SUBMITTED - Pushing to GTM immediately');
-  window.dataLayer.push({
-    'event': 'form_submit',
-    'formId': 'contact-form',
-    'formType': 'contact',
-    'formEmail': formData.fields[1].value
-  });
-  console.log('✅ GTM Event Pushed:', window.dataLayer[window.dataLayer.length - 1]);
-
   // Disable button
   submitBtn.disabled = true;
   submitBtn.textContent = 'Enviando...';
@@ -941,17 +931,20 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   })
   .then(function(response) {
     if (response.ok) {
+      // Push to GTM ONLY on successful submission
+      console.log('🔥 FORM SUBMITTED SUCCESSFULLY - Pushing to GTM');
+      window.dataLayer.push({
+        'event': 'form_submit',
+        'formId': 'contact-form',
+        'formType': 'contact',
+        'formEmail': formData.fields[1].value
+      });
+      console.log('✅ GTM Event Pushed:', window.dataLayer[window.dataLayer.length - 1]);
+
       statusDiv.className = 'text-center p-4 rounded-lg bg-green-100 text-green-800';
       statusDiv.textContent = 'Obrigado! Sua mensagem foi enviada com sucesso.';
       statusDiv.classList.remove('hidden');
       document.getElementById('contact-form').reset();
-
-      // Additional GTM event for successful submission
-      window.dataLayer.push({
-        'event': 'form_submit_success',
-        'formId': 'contact-form'
-      });
-      console.log('✅ Form sent to HubSpot successfully');
     } else {
       throw new Error('Submission failed');
     }
