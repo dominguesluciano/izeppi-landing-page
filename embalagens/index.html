@@ -855,50 +855,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <!-- Right Column - Simple Contact Form -->
           <div data-aos="fade-left" class="bg-gray-50 rounded-2xl p-8">
-<script src="https://js-eu1.hsforms.net/forms/embed/147103506.js" defer></script>
+<!-- <script src="https://js-eu1.hsforms.net/forms/embed/147103506.js" defer></script> -->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
 
-<div class="hs-form-frame"
-     data-region="eu1"
-     data-form-id="bdd1d858-77e4-44d8-bc32-679c3fbf58b8"
-     data-portal-id="147103506"></div>
-     <script>
-window.addEventListener("message", function(e) {
-  console.log("📩 message received:", e);
+<script>
+hbspt.forms.create({
+  region: "eu1",
+  portalId: "147103506",
+  formId: "bdd1d858-77e4-44d8-bc32-679c3fbf58b8",
+  onFormSubmit: function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "hubspotFormSubmitted"
+    });
+    console.log("✅ HubSpot Conversion Fired → GTM");
+  }
 });
 </script>
 
-<!-- 
-<script>
-(function(){
-  try {
-    window.dataLayer = window.dataLayer || [];
-
-    window.addEventListener("message", function (event) {
-      try {
-        if (!/hsforms\.net|hsforms\.com|hubspot\.com/i.test(event.origin || "")) return;
-
-        let data = event.data;
-        if (typeof data === "string") { try { data = JSON.parse(data); } catch(e){} }
-
-        if (!data || data.type !== "hsFormCallback") return;
-        const evt = data.eventName;
-
-        if (evt === "onFormReady") {
-          dataLayer.push({ event: "hubspotFormReady", formId: data.id || "", portalId: data.portalId || "", region: data.region || "" });
-          console.log("✅ HubSpot Form Ready → GTM");
-        }
-
-        if (evt === "onFormSubmit" || evt === "onFormSubmitted") {
-          dataLayer.push({ event: "hubspotFormSubmitted", formId: data.id || "", portalId: data.portalId || "", region: data.region || "" });
-          console.log("✅ HubSpot Form Submitted → GTM");
-        }
-      } catch(e){}
-    });
-  } catch(e) {
-    console.warn("HubSpot listener failed silently", e);
-  }
-})();
-</script> -->
 
           </div>
         </div>
