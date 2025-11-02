@@ -931,28 +931,26 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     body: JSON.stringify(formData)
   })
   .then(function(response) {
+    console.log('Response status:', response.status);
     if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error('Submission failed');
-    }
-  })
-  .then(function(data) {
-    // Push to GTM ONLY on successful submission
-    console.log('🔥 FORM SUBMITTED SUCCESSFULLY - Pushing to GTM');
-    window.dataLayer.push({
-      'event': 'form_submit',
-      'formId': 'contact-form',
-      'formType': 'contact',
-      'formEmail': formData.fields[1].value
-    });
-    console.log('✅ GTM Event Pushed:', window.dataLayer[window.dataLayer.length - 1]);
+      // Push to GTM ONLY on successful submission
+      console.log('🔥 FORM SUBMITTED SUCCESSFULLY - Pushing to GTM');
+      window.dataLayer.push({
+        'event': 'form_submit',
+        'formId': 'contact-form',
+        'formType': 'contact',
+        'formEmail': formData.fields[1].value
+      });
+      console.log('✅ GTM Event Pushed:', window.dataLayer[window.dataLayer.length - 1]);
 
-    // Hide form and show success message
-    document.getElementById('contact-form').style.display = 'none';
-    statusDiv.className = 'text-center p-4';
-    statusDiv.innerHTML = '<p class="text-lg text-gray-800">Obrigado! Enviado com sucesso.<br>Um especialista entrará em contato.</p>';
-    statusDiv.classList.remove('hidden');
+      // Hide form and show success message
+      document.getElementById('contact-form').style.display = 'none';
+      statusDiv.className = 'text-center p-4';
+      statusDiv.innerHTML = '<p class="text-lg text-gray-800">Obrigado! Enviado com sucesso.<br>Um especialista entrará em contato.</p>';
+      statusDiv.classList.remove('hidden');
+    } else {
+      throw new Error('Submission failed with status: ' + response.status);
+    }
   })
   .catch(function(error) {
     console.error('Error:', error);
