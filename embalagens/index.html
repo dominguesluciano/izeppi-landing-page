@@ -857,26 +857,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div data-aos="fade-left" class="bg-gray-50 rounded-2xl p-8">
 <!-- <script src="https://js-eu1.hsforms.net/forms/embed/147103506.js" defer></script> -->
 <!-- ✅ HubSpot Form Embed -->
+<!-- ✅ HubSpot Form Script -->
 <script charset="utf-8" type="text/javascript" src="https://js-eu1.hsforms.net/forms/v2.js"></script>
 
+<!-- ✅ HubSpot Form Container -->
+<div id="hubspot-form"></div>
+
+<!-- ✅ Reliable load + submit listener -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!window.hbspt) return console.error("❌ HubSpot forms lib not loaded");
+(function loadHSForm() {
+  // If HubSpot library didn't load yet, retry
+  if (typeof hbspt === "undefined" || !hbspt.forms || !hbspt.forms.create) {
+    return setTimeout(loadHSForm, 200);
+  }
 
-    hbspt.forms.create({
-      region: "eu1",
-      portalId: "147103506",
-      formId: "bdd1d858-77e4-44d8-bc32-679c3fbf58b8",
+  hbspt.forms.create({
+    region: "eu1",
+    portalId: "147103506",
+    formId: "bdd1d858-77e4-44d8-bc32-679c3fbf58b8",
+    target: "#hubspot-form",
+    
+    onFormReady: function() {
+      console.log("✅ HubSpot form ready");
+    },
 
-      onFormSubmit: function () {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "hubspotFormSubmitted"
-        });
-        console.log("✅ HubSpot form submitted → pushed to GTM");
-      }
-    });
+    onFormSubmit: function() {
+      console.log("✅ HubSpot hit onFormSubmit callback");
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "hubspotFormSubmitted"
+      });
+
+      console.log("🔥 Conversion pushed to GTM");
+    }
   });
+})();
 </script>
 
 
