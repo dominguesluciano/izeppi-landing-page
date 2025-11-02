@@ -899,8 +899,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 // Initialize dataLayer
 window.dataLayer = window.dataLayer || [];
 
+// Prevent duplicate submissions
+var formSubmitted = false;
+
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  // Prevent double submission
+  if (formSubmitted) {
+    console.log('⚠️ Form already submitted, ignoring duplicate');
+    return;
+  }
+  formSubmitted = true;
 
   var submitBtn = this.querySelector('button[type="submit"]');
   var statusDiv = document.getElementById('form-status');
@@ -923,7 +933,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   submitBtn.textContent = 'Enviando...';
 
   // Push to GTM - single event, no PII
-  console.log('🔥 FORM SUBMITTED - Pushing to GTM');
+  console.log('🔥 FORM SUBMITTED - Pushing to GTM (ONLY ONCE)');
   window.dataLayer.push({
     'event': 'form_submit',
     'formId': 'contact-form',
