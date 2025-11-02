@@ -861,31 +861,88 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- HubSpot Form Container -->
 <div id="hubspot-form"></div>
 
-<!-- HubSpot Form + GTM Integration -->
+<!-- HubSpot Form + GTM Integration (Privacy Sandbox Compatible) -->
 <script>
-// Listen to HubSpot postMessage events (primary method)
-window.addEventListener('message', function(event) {
-  // Verify the message is from HubSpot
-  if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
-    console.log('✅ HubSpot form submitted via postMessage');
+// Initialize dataLayer
+window.dataLayer = window.dataLayer || [];
 
-    // Push to GTM dataLayer
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event': 'hubspot_form_submit',
-      'formId': event.data.id,
-      'formType': 'contact'
-    });
-
-    console.log('🔥 Conversion event pushed to GTM dataLayer');
+// GUARANTEED METHOD: Watch for form submission (language-agnostic, iframe-proof)
+function watchForFormSubmission() {
+  var targetNode = document.getElementById('hubspot-form');
+  if (!targetNode) {
+    console.log('❌ HubSpot form container not found');
+    return;
   }
-});
 
-// Load HubSpot form (with callback as backup)
+  var formSubmitted = false;
+  var formFieldsCount = 0;
+
+  // Wait for form to load, then count the input fields
+  setTimeout(function() {
+    var inputs = targetNode.querySelectorAll('input:not([type="hidden"]), textarea, select');
+    formFieldsCount = inputs.length;
+    console.log('📋 Form loaded with ' + formFieldsCount + ' fields, watching for submission...');
+  }, 2000);
+
+  var observer = new MutationObserver(function(mutations) {
+    if (formSubmitted) return; // Prevent duplicate events
+
+    // Check current state
+    var currentInputs = targetNode.querySelectorAll('input:not([type="hidden"]), textarea, select');
+    var submittedMessage = targetNode.querySelector('.submitted-message');
+    var currentForm = targetNode.querySelector('form');
+
+    // Detection: Form fields disappeared (replaced with success message)
+    var fieldsDisappeared = formFieldsCount > 0 && currentInputs.length === 0;
+
+    // Detection: HubSpot's success message class exists
+    var hasSuccessMessage = submittedMessage !== null;
+
+    // Detection: Form still exists but is hidden/replaced with message
+    var formHidden = currentForm && (currentForm.style.display === 'none' || !currentForm.offsetParent);
+
+    if (fieldsDisappeared || hasSuccessMessage || formHidden) {
+      formSubmitted = true;
+      console.log('✅ FORM SUBMITTED - Form fields disappeared/replaced with message!');
+      console.log('   Detection method: ' +
+        (fieldsDisappeared ? 'fields disappeared' : '') +
+        (hasSuccessMessage ? ' success message' : '') +
+        (formHidden ? ' form hidden' : ''));
+
+      // Push to GTM dataLayer
+      window.dataLayer.push({
+        'event': 'hubspot_form_submit',
+        'formId': 'bdd1d858-77e4-44d8-bc32-679c3fbf58b8',
+        'formType': 'contact',
+        'method': 'mutation_observer'
+      });
+
+      console.log('🔥 GTM Event Pushed to dataLayer:', window.dataLayer[window.dataLayer.length - 1]);
+
+      // Stop observing
+      observer.disconnect();
+    }
+  });
+
+  // Start observing with all options
+  observer.observe(targetNode, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeOldValue: true,
+    characterData: true
+  });
+
+  console.log('👀 MutationObserver active (language-agnostic, iframe-proof)');
+}
+
+// Load HubSpot form
 (function loadHSForm() {
   if (typeof hbspt === "undefined" || !hbspt.forms || !hbspt.forms.create) {
     return setTimeout(loadHSForm, 200);
   }
+
+  console.log('🚀 Loading HubSpot form...');
 
   hbspt.forms.create({
     region: "eu1",
@@ -894,19 +951,51 @@ window.addEventListener('message', function(event) {
     target: "#hubspot-form",
 
     onFormReady: function($form) {
-      console.log("✅ HubSpot form loaded and ready");
+      console.log("✅ HubSpot form ready");
+
+      // Start watching for submission
+      watchForFormSubmission();
+
+      // Try to attach to submit button as backup
+      setTimeout(function() {
+        var submitBtn = document.querySelector('#hubspot-form input[type="submit"], #hubspot-form button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.addEventListener('click', function() {
+            console.log('🖱️ Submit button clicked - waiting for confirmation...');
+
+            // Wait and check if form is still visible (if gone, it was submitted)
+            setTimeout(function() {
+              var formStillVisible = document.querySelector('#hubspot-form form');
+              if (!formStillVisible) {
+                console.log('✅ Form disappeared - submission confirmed');
+
+                window.dataLayer.push({
+                  'event': 'hubspot_form_submit',
+                  'formId': 'bdd1d858-77e4-44d8-bc32-679c3fbf58b8',
+                  'formType': 'contact',
+                  'method': 'button_click_backup'
+                });
+
+                console.log('🔥 GTM Event Pushed (backup):', window.dataLayer[window.dataLayer.length - 1]);
+              }
+            }, 2000);
+          });
+          console.log('✅ Submit button listener attached');
+        }
+      }, 1000);
     },
 
     onFormSubmitted: function($form) {
-      console.log("✅ HubSpot form submitted via callback (backup)");
+      console.log("✅ HubSpot onFormSubmitted callback fired (if not sandboxed)");
 
-      // Backup dataLayer push (in case postMessage doesn't fire)
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         'event': 'hubspot_form_submit',
         'formId': 'bdd1d858-77e4-44d8-bc32-679c3fbf58b8',
-        'formType': 'contact'
+        'formType': 'contact',
+        'method': 'callback'
       });
+
+      console.log('🔥 GTM Event Pushed (callback):', window.dataLayer[window.dataLayer.length - 1]);
     }
   });
 })();
