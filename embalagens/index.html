@@ -856,6 +856,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <!-- Right Column - Simple Contact Form -->
           <div data-aos="fade-left" class="bg-gray-50 rounded-2xl p-8">
             <script src="https://js-eu1.hsforms.net/forms/embed/147103506.js" defer></script>
+            <script>
+  window.addEventListener("message", function(event) {
+    // Listen for HS iframe postMessages
+    if (event.data.type === "hsFormCallback" && event.data.eventName === "onFormSubmit") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "hubspotFormSubmitted",
+        formId: event.data.id,
+        region: event.data.region
+      });
+      console.log(" HubSpot form tracked: ", event.data);
+    }
+  });
+</script>
+
 <div class="hs-form-frame" data-region="eu1" data-form-id="bdd1d858-77e4-44d8-bc32-679c3fbf58b8" data-portal-id="147103506"></div>
           </div>
         </div>
