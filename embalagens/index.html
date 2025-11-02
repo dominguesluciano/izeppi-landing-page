@@ -948,18 +948,19 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     });
     console.log('✅ GTM Event Pushed:', window.dataLayer[window.dataLayer.length - 1]);
 
-    statusDiv.className = 'text-center p-4 rounded-lg bg-green-100 text-green-800';
-    statusDiv.textContent = 'Obrigado! Sua mensagem foi enviada com sucesso.';
+    // Hide form and show success message
+    document.getElementById('contact-form').style.display = 'none';
+    statusDiv.className = 'text-center p-4';
+    statusDiv.innerHTML = '<p class="text-lg text-gray-800">Obrigado! Enviado com sucesso.<br>Um especialista entrará em contato.</p>';
     statusDiv.classList.remove('hidden');
-    document.getElementById('contact-form').reset();
   })
   .catch(function(error) {
     console.error('Error:', error);
     statusDiv.className = 'text-center p-4 rounded-lg bg-red-100 text-red-800';
     statusDiv.textContent = 'Erro ao enviar. Por favor, tente novamente.';
     statusDiv.classList.remove('hidden');
-  })
-  .finally(function() {
+
+    // Re-enable button on error
     submitBtn.disabled = false;
     submitBtn.textContent = 'Enviar Mensagem';
   });
