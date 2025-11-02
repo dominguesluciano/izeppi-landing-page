@@ -855,18 +855,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <!-- Right Column - Simple Contact Form -->
           <div data-aos="fade-left" class="bg-gray-50 rounded-2xl p-8">
-<!-- <script src="https://js-eu1.hsforms.net/forms/embed/147103506.js" defer></script> -->
-<!-- ✅ HubSpot Form Embed -->
-<!-- ✅ HubSpot Form Script -->
-<script charset="utf-8" type="text/javascript" src="https://js-eu1.hsforms.net/forms/v2.js"></script>
+<!-- HubSpot Form Script -->
+<script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/v2.js"></script>
 
-<!-- ✅ HubSpot Form Container -->
+<!-- HubSpot Form Container -->
 <div id="hubspot-form"></div>
 
-<!-- ✅ Reliable load + submit listener -->
+<!-- HubSpot Form + GTM Integration -->
 <script>
+// Listen to HubSpot postMessage events (primary method)
+window.addEventListener('message', function(event) {
+  // Verify the message is from HubSpot
+  if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+    console.log('✅ HubSpot form submitted via postMessage');
+
+    // Push to GTM dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'hubspot_form_submit',
+      'formId': event.data.id,
+      'formType': 'contact'
+    });
+
+    console.log('🔥 Conversion event pushed to GTM dataLayer');
+  }
+});
+
+// Load HubSpot form (with callback as backup)
 (function loadHSForm() {
-  // If HubSpot library didn't load yet, retry
   if (typeof hbspt === "undefined" || !hbspt.forms || !hbspt.forms.create) {
     return setTimeout(loadHSForm, 200);
   }
@@ -876,20 +892,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     portalId: "147103506",
     formId: "bdd1d858-77e4-44d8-bc32-679c3fbf58b8",
     target: "#hubspot-form",
-    
-    onFormReady: function() {
-      console.log("✅ HubSpot form ready");
+
+    onFormReady: function($form) {
+      console.log("✅ HubSpot form loaded and ready");
     },
 
-    onFormSubmit: function() {
-      console.log("✅ HubSpot hit onFormSubmit callback");
+    onFormSubmitted: function($form) {
+      console.log("✅ HubSpot form submitted via callback (backup)");
 
+      // Backup dataLayer push (in case postMessage doesn't fire)
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: "hubspotFormSubmitted"
+        'event': 'hubspot_form_submit',
+        'formId': 'bdd1d858-77e4-44d8-bc32-679c3fbf58b8',
+        'formType': 'contact'
       });
-
-      console.log("🔥 Conversion pushed to GTM");
     }
   });
 })();
